@@ -1,77 +1,75 @@
-package Tuan2_SinhVien;
+package qlsv;
+import java.time.LocalDate;
 public class SinhVien {
-    private int maSinhVien;
-    private String hoTen;
-    private double diemLT;
-    private double diemTH;
+	protected String maSV;
+	protected String hoTen;
+	protected LocalDate ngaySinh;
+	protected String lop;
+	protected int soTinChi;
+	protected MonHoc monHoc;
+	
+	
+	public SinhVien(String maSV, String hoTen, LocalDate ngaySinh, String lop, int soTinChi, MonHoc monHoc) {
+		super();
+		this.maSV = maSV;
+		this.hoTen = hoTen;
+		this.ngaySinh = ngaySinh;
+		this.lop = lop;
+		this.soTinChi = soTinChi;
+		this.monHoc = monHoc;
+	}
+	
+	public double thanhTien() {
+		return soTinChi *monHoc.getDonGia();
+	}
+	
+	public String getLoai() {return "Sinh vien";}
+	
+	public String getThongTinRieng() {return " ";}
 
-    public SinhVien() {
-        maSinhVien = 1;
-        hoTen = "Chua co ten";
-        diemLT = 0;
-        diemTH = 0;
-    }
-    public SinhVien(int maSinhVien, String hoTen, double diemLT, double diemTH) {
-        setMaSinhVien(maSinhVien);
-        setHoTen(hoTen);
-        setDiemLT(diemLT);
-        setDiemTH(diemTH);
-    }
-    public int getMaSinhVien() {
-        return maSinhVien;
-    }
+	public String getMaSV() {
+		return maSV;
+	}
 
-    public String getHoTen() {
-        return hoTen;
-    }
+	public String getHoTen() {
+		return hoTen;
+	}
 
-    public double getDiemLT() {
-        return diemLT;
-    }
+	public LocalDate getNgaySinh() {
+		return ngaySinh;
+	}
 
-    public double getDiemTH() {
-        return diemTH;
-    }
-    public void setMaSinhVien(int maSinhVien) {
-        if (maSinhVien > 0) {
-            this.maSinhVien = maSinhVien;
-        } else {
-            throw new IllegalArgumentException("Ma sinh vien phai > 0");
-        }
-    }
+	public String getLop() {
+		return lop;
+	}
 
-    public void setHoTen(String hoTen) {
-        if (hoTen != null && !hoTen.trim().isEmpty()) {
-            this.hoTen = hoTen;
-        } else {
-            throw new IllegalArgumentException("Ho ten khong duoc rong");
-        }
-    }
+	public int getSoTinChi() {
+		return soTinChi;
+	}
 
-    public void setDiemLT(double diemLT) {
-        if (diemLT >= 0 && diemLT <= 10) {
-            this.diemLT = diemLT;
-        } else {
-            throw new IllegalArgumentException("Diem LT phai tu 0 den 10");
-        }
-    }
+	public MonHoc getMonHoc() {
+		return monHoc;
+	}
+	
+	public float getDonGia() {return monHoc.getDonGia();}
+	public String getTenMonHoc() {return monHoc.getTenMon();
+	}
 
-    public void setDiemTH(double diemTH) {
-        if (diemTH >= 0 && diemTH <= 10) {
-            this.diemTH = diemTH;
-        } else {
-            throw new IllegalArgumentException("Diem TH phai tu 0 den 10");
-        }
-    }
+	@Override
+	public String toString() {
+		return String.format(
+				"[%s] %s | Lop: %s | NS: %s | Mon: %s (%d tin x %,.0f)| TT: %,.0fVND",
+				maSV, hoTen, lop, ngaySinh,
+				monHoc.getTenMon(), soTinChi, monHoc.getDonGia(), thanhTien());
+	}
 
-    public double tinhDiemTrungBinh() {
-        return (diemLT + diemTH) / 2;
-    }
 
-    @Override
-    public String toString() {
-        return String.format("%-12d %-25s %-10.2f %-10.2f",
-                maSinhVien, hoTen, diemLT, diemTH);
-    }
+	
+	
+	
+	
+
+
+	
+	
 }
-
